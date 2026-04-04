@@ -19,22 +19,29 @@
             }
             input {
                 background-color:rgb(6, 74, 48);
-                color: rgb(255, 255, 255) 
+                color: rgb(255, 255, 255);
             }
             .result {
                 color: white;
                 font-family: system-ui;
             }
+            a {
+                color: rgba(177, 115, 184, 0.479);
+                font-size: 15px;
+            }   
         </style>
     </head>
     <body>
         <h1>Добро пожаловать в эмулятор НАМ</h1>
-        <button id="word">слово</button>
-        <label for="word">напишите входное слово</label>
+        <a href="https://cf2.ppt-online.org/files2/slide/v/vxinJj3DZA8OyMBIduw4olzEQ5L6gfpkNGmFVH/slide-24.jpg">узнайте о машине маркова</a>
         <br>
         <br>
         <input type="file" id="file">
         <label for="file">Загрузить Файл с правилами (.txt)</label>
+        <br>
+        <br>
+        <button id="word">слово</button>
+        <label for="word">напишите входное слово</label>
         <p>Результат:</p>
         <div id="result" class="result">(пока не запущено)</div>
         <script>
