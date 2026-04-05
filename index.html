@@ -5,33 +5,36 @@
         <meta name="viewport" content="width=device-width, initial-size=1.0">
         <style>
             h1, p, h2, h3, button, label, input {
-                font-family: system-ui;
+                font-family: Cursive;
             }
             body {
-                background-color: rgb(60, 189, 140);
+                background-color: rgb(215, 207, 191);
             }
             button {
-                background-color: rgb(6, 74, 48);
+                background-color: rgb(135, 114, 89);
                 color: rgb(255, 255, 255)
             }
             button:hover {
-                background-color: rgb(17, 144, 95);
+                background-color: rgb(30, 57, 75);
             }
             input {
-                background-color:rgb(6, 74, 48);
+                background-color:rgb(135, 114, 89);
                 color: rgb(255, 255, 255);
             }
             .result {
-                color: white;
-                font-family: system-ui;
+                font-family: Cursive;
             }
             a {
-                color: rgba(177, 115, 184, 0.479);
+                color: rgba(30, 57, 75);
                 font-size: 15px;
             } 
             a:hover {
-                color: rgb(231, 12, 255);
-            }  
+                color: black;
+            }
+          .real-file-input {
+            display: none;
+          }
+          
         </style>
     </head>
     <body>
@@ -39,8 +42,9 @@
         <a href="https://cf2.ppt-online.org/files2/slide/v/vxinJj3DZA8OyMBIduw4olzEQ5L6gfpkNGmFVH/slide-24.jpg">узнайте о машине маркова</a>
         <br>
         <br>
-        <input type="file" id="file">
-        <label for="file">Загрузить Файл с правилами (.txt)</label>
+        <input type="file" id="file" class="real-file-input">
+        <p>загрузить файл с правилами: <label for="file"><img src="https://static.vecteezy.com/system/resources/previews/000/441/686/non_2x/down-vector-icon.jpg" width=30 height=30></img></label></p>
+
         <br>
         <br>
         <label for="word">напишите входное слово</label>
@@ -178,6 +182,6 @@
         <br>
         <br>
         <br>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.0.4)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.0.5)</p>
     </body>
 </html>
