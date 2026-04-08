@@ -6,6 +6,9 @@
       <title>Эмулятор нам</title>
       <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e64481574327c.jpg" type="image/png">
         <style>
+          .libraly {
+            display: none;
+          }
             h1, p, h2, h3, button, label, input {
                 font-family: 'Comic Sans MS', sans-serif;
             }
@@ -44,24 +47,115 @@
         </style>
     </head>
     <body>
-        <h1>Добро пожаловать в эмулятор НАМ</h1>
-        <a href="https://cf2.ppt-online.org/files2/slide/v/vxinJj3DZA8OyMBIduw4olzEQ5L6gfpkNGmFVH/slide-24.jpg" target="_blank">узнайте о машине маркова</a>
-      <br>
-      <a href="https://vk.com/dzuakuy" target="_blank">по вопросам, касательно работы сайта обращайтесь сюда<a>
+        <button onclick="show_emulator()">эмулятор</button>
+        <button onclick="hide_emulator()">теория</button>
         <br>
+        <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
+      <a href="https://vk.com/dzuakuy" target="_blank">по вопросам работы сайта обращайтесь сюда<a>
+        <p class="libraly" id="libraly_text">Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам
+Представьте, что у вас есть строка символов и набор простых правил, которые работают как команда «найти и заменить». Например, вы ищете в строке фрагмент «ab» и заменяете его на «c». Это и есть суть НАМ.
+
+Работа алгоритма строго регламентирована и выполняется пошагово:
+
+Задаётся алфавит - это набор допустимых символов, с которыми работает алгоритм.
+
+Задаётся список правил подстановки. Правила - это команды вида левая_часть → правая_часть. Они применяются к текущему слову строго по порядку.
+
+Выполнение начинается:
+
+На вход подаётся начальное слово.
+
+Алгоритм ищет первое подходящее правило и заменяет самое левое вхождение левой части на правую, создавая новое слово.
+
+Если правило было заключительным (обозначается как =>), то выполнение останавливается, и результат готов.
+
+Если правило было обычным, то процесс повторяется заново с начала списка правил, но уже для нового слова.
+
+Завершение работы: Алгоритм останавливается, когда:
+
+Будет применено заключительное правило.
+
+Не найдется ни одного правила, которое можно применить к текущему слову.
+
+Пример для наглядности
+Давайте рассмотрим простую задачу: избавиться от повторяющихся букв в слове, состоящем из букв a, b, c. Например, слово abbbcaa нужно превратить в abca. Для этого нам понадобятся следующие правила:
+
+aa → a
+
+bb → b
+
+cc → c
+
+Как это будет работать:
+
+Шаг 1: Просматриваем список правил. Первое правило aa → a не подходит, второе bb → b — подходит, так как в слове abbbcaa есть bb. Заменяем первое вхождение: abbbcaa → abbcaa.
+
+Шаг 2: Снова начинаем с первого правила. Правило aa → a по-прежнему не подходит. Правило bb → b подходит: abbcaa → abcaa.
+
+Шаг 3: Снова проверяем. Теперь подходит правило aa → a: abcaa → abca.
+
+Шаг 4: Просматриваем все правила. Ни одно из них не подходит к слову abca. Выполнение алгоритма завершено.       
+в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона.        
+        
+        </p>
         <br>
         <input type="file" id="file" class="real-file-input">
-        <p>загрузить файл с правилами: <label for="file"><img src="https://static.vecteezy.com/system/resources/previews/000/441/686/non_2x/down-vector-icon.jpg" width=30 height=30></img></label></p>
+        <p id="download">загрузить файл с правилами: <label for="file"><img src="https://static.vecteezy.com/system/resources/previews/000/441/686/non_2x/down-vector-icon.jpg" width=30 height=30></img></label></p>
 
         <br>
         <br>
-        <label for="word">напишите входное слово</label>
+        <label for="word" id="input_word">напишите входное слово</label>
         <br>
         <input type="text" id="word">
         <button id="OK">OK</button>
-        <p>Результат:</p>
+        <p id="res">Результат:</p>
         <div id="result" class="result">(пока не запущено)</div>
         <script>
+          //hiding emulator ui elements and display libraly
+          function hide_emulator() {
+             //1
+             welcome = document.getElementById("welcome")
+             file = document.getElementById("file")
+             word = document.getElementById("word")
+             res = document.getElementById("res")
+             result = document.getElementById("result")
+             ok = document.getElementById("OK")
+             download = document.getElementById("download")
+             input_word = document.getElementById("input_word")
+             //2
+             libraly_text = document.getElementById("libraly_text")
+             file.style.display = "none"
+             word.style.display = "none"
+             res.style.display = "none"
+             result.style.display = "none"
+             ok.style.display = "none"
+             download.style.display = "none"
+             input_word.style.display = "none"
+             welcome.style.display = "none"
+             libraly_text.style.display = "block"
+          }
+    function show_emulator() {
+             //1
+             welcome = document.getElementById("welcome")
+             file = document.getElementById("file")
+             word = document.getElementById("word")
+             res = document.getElementById("res")
+             result = document.getElementById("result")
+             ok = document.getElementById("OK")
+             download = document.getElementById("download")
+             input_word = document.getElementById("input_word")
+             //2
+             libraly_text = document.getElementById("libraly_text")
+             file.style.display = ""
+             word.style.display = ""
+             res.style.display = ""
+             result.style.display = ""
+             ok.style.display = ""
+             download.style.display = ""
+             input_word.style.display = ""
+             welcome.style.display = ""
+             libraly_text.style.display = ""
+          }   
     //replace one substring to other one
     //str - what change
     //replace - to what change
@@ -181,6 +275,6 @@
         <br>
         <br>
         
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.0.85)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.0.9)</p>
     </body>
 </html>
