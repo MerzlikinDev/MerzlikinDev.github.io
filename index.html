@@ -4,7 +4,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-size=1.0">
       <title>Эмулятор нам</title>
-      <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e64481574327c.jpg" type="image/png">
+      <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e644815e74327c.jpg" type="image/png">
         <style>
           .libraly {
             display: none;
@@ -47,11 +47,10 @@
         </style>
     </head>
     <body>
-        <button onclick="show_emulator()">эмулятор</button>
-        <button onclick="hide_emulator()">теория</button>
-        <br>
+        <button onclick="show_emulator()">эмулятор</button>     <button onclick="hide_emulator()">теория</button>
+      <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right"></img><a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
-      <a href="https://vk.com/dzuakuy" target="_blank">по вопросам работы сайта обращайтесь сюда<a>
+      
         <p class="libraly" id="libraly_text">Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам
 Представьте, что у вас есть строка символов и набор простых правил, которые работают как команда «найти и заменить». Например, вы ищете в строке фрагмент «ab» и заменяете его на «c». Это и есть суть НАМ.
 
@@ -95,19 +94,18 @@ cc → c
 Шаг 3: Снова проверяем. Теперь подходит правило aa → a: abcaa → abca.
 
 Шаг 4: Просматриваем все правила. Ни одно из них не подходит к слову abca. Выполнение алгоритма завершено.       
-в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона.
-<br>
+в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона. 
 <br>
 <img class="libraly" id="picture" src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100>Марков Андрей Андреевич</img>
         </p>
         <br>
         <input type="file" id="file" class="real-file-input">
-        <p id="download">загрузить файл с правилами: <label for="file"><img src="https://static.vecteezy.com/system/resources/previews/000/441/686/non_2x/down-vector-icon.jpg" width=30 height=30></img></label></p>
 
+        <label for="word" id="input_word">входные данные:</label>
         <br>
+      <label for="file"><img id="download" src="https://png.pngtree.com/thumb_back/fh260/background/20220818/pngtree-download-flat-white-color-round-stamp-icon-storage-download-down-arrow-photo-image_19548682.jpg" width=40 height=40>
         <br>
-        <label for="word" id="input_word">напишите входное слово</label>
-        <br>
+      </img></label>
         <input type="text" id="word">
         <button id="OK">OK</button>
         <p id="res">Результат:</p>
@@ -132,11 +130,11 @@ cc → c
              res.style.display = "none"
              result.style.display = "none"
              ok.style.display = "none"
-             download.style.display = "none"
              input_word.style.display = "none"
              welcome.style.display = "none"
              libraly_text.style.display = "block"
              picture.style.display = "block"
+             download.style.display = "none"
           }
     function show_emulator() {
              //1
@@ -161,6 +159,7 @@ cc → c
              welcome.style.display = ""
              libraly_text.style.display = ""
              picture.style.display = ""
+            
           }   
     //replace one substring to other one
     //str - what change
@@ -281,6 +280,6 @@ cc → c
         <br>
         <br>
         
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.0.93)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.1.0)(first GUI update)</p>
     </body>
 </html>
