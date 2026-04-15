@@ -58,7 +58,7 @@
                 letter-spacing: 0.3px;
             }
             .result {
-                 font-family: 'Inter', -apple-system, sans-serif;
+                 font-family: "Consolas", 'Inter', -apple-system, sans-serif;
             }
             a {
                 color: rgba(30, 57, 75);
@@ -106,6 +106,10 @@
       <label for="file"><img id="download" src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40>
       </img></label>
         <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово...">
+      <br>
+      <br>
+        <button onclick="show_rules()">Правила</button>
+        <p style="display: none" id="rules_list" class="result">сначала загрузи правила! ;)</p>
         <br>
         <br>
         <button id="OK" class="ok">OK</button>
@@ -113,6 +117,17 @@
       <div id="result" class="result"><b>(пока не запущено)</b></div>
       </div>
         <script>
+          let v = false;
+          function show_rules() {
+            rules_list = document.getElementById("rules_list");
+            v = !v
+            if (v) {
+              rules_list.style.display = "block"
+            }
+            else {
+              rules_list.style.display = "none"
+            }
+          }
           let vis = true;
          function emulator() {
             em_content = document.getElementById("8")
@@ -192,7 +207,6 @@
             resultDiv.classList.remove("error");
         }
     }
-
     //reading file as lines of text
     //file - input file
     function readFileAsText(file) {
@@ -203,8 +217,25 @@
             reader.readAsText(file, "UTF-8");
         });
     }
+    const fileInput = document.getElementById('file');
+    const rulesList = document.getElementById('rules_list');
+    fileInput.addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+        rulesList.textContent = ''; 
+        return;
+    }
 
+    try {
+        const content = await readFileAsText(file);
 
+        const lines = content.split(/\r?\n/);
+        rulesList.innerHTML = lines.join('<br>');
+    } catch (error) {
+        console.error(error);
+        rulesList.textContent = 'Ошибка при чтении файла';
+    }
+});
     document.getElementById("OK").addEventListener("click", async () => {
         const wordInput = document.getElementById("word");
         const word = wordInput.value.trim();
@@ -219,6 +250,7 @@
             displayResult("Ошибка: выберите файл с правилами", true);
             return;
         }
+        
 
         displayResult("Обработка...");
 
@@ -226,7 +258,6 @@
             const content = await readFileAsText(file);
             const lines = content.split(/\r?\n/);
             const rules = [];
-
             for (const line of lines) {
                 const trimmed = line.trim();
                 if (trimmed === "") continue;
@@ -248,6 +279,7 @@
             displayResult(`Ошибка: ${err.message}`, true);
         }
     });
+          
 </script>
       <br>
        <button id="9" onclick="libraly()">ТЕОРИЯ 📚</button>
@@ -312,6 +344,6 @@
         <br>
         <br>
         
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.1.7)(fourth GUI update)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.1.9)(fourth GUI update)</p>
     </body>
 </html>
