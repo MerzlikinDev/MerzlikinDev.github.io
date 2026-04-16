@@ -2,21 +2,21 @@
 
 <html lang="ru">
     <head>
-        <meta name="viewport" content="width=device-width, initial-size=1.0">
-      <title>Эмулятор нам</title>
-      <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e644815e74327c.jpg" type="image/png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Эмулятор НАМ</title>
+        <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e644815e74327c.jpg" type="image/png">
         <style>
-          .libraly {
-            display: none;
-          }
+            .libraly {
+                display: none;
             }
-          p {
-            font-size: 50;
-          }
+            /* лишняя скобка удалена */
+            p {
+                font-size: 16px;   /* исправлено: были 50 без единиц */
+            }
             body {
                 font-family: 'Inter', -apple-system, sans-serif;
                 background-color: rgb(215, 207, 191);
-                font-family: 
+                font-size: 16px;
             }
             button {
                 display: inline-flex;
@@ -57,293 +57,273 @@
                 border: 1px solid rgba(255,255,255,0.05);
                 letter-spacing: 0.3px;
             }
+            textarea {
+                display: none;   /* изначально скрыто, показывается по кнопке "Правила" */
+                background: rgb(134, 114, 89);
+                color: white;
+                font-weight: 1000;
+                font-size: 1rem;
+                padding: 0.75rem 1.8rem;
+                border-radius: 60px;
+                border: none;
+                transition: var(--transition);
+                box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
+                border: 1px solid rgba(255,255,255,0.05);
+                letter-spacing: 0.3px;
+                width: 80%;
+                min-height: 150px;
+                font-family: "Consolas", 'Inter', monospace;
+            }
             .result {
-                 font-family: "Consolas", 'Inter', -apple-system, sans-serif;
+                font-family: "Consolas", 'Inter', -apple-system, sans-serif;
             }
             a {
                 color: rgba(30, 57, 75);
                 font-size: 15px;
             } 
             h1:hover {
-              color: rgb(30, 57, 75); 
-          }
+                color: rgb(30, 57, 75); 
+            }
             a:hover {
                 color: black;
             }
-          .real-file-input {
-            display: none;
-          }
-          img {
-           
-  vertical-align: bottom;
-}
-          input::placeholder {
-              color: white;  
-              opacity: 0.5;             
-          }
-          img:hover {
-            transform: translateY(-2px);
-          }
-          .ok {
-            background-color: rgb(115, 84, 83);
-          }
-          .ok:hover {
-            background-color: rgb(63, 33, 9);
-          }
-          
+            .real-file-input {
+                display: none;
+            }
+            img {
+                vertical-align: bottom;
+            }
+            input::placeholder {
+                color: white;  
+                opacity: 0.5;             
+            }
+            img:hover {
+                transform: translateY(-2px);
+            }
+            .ok {
+                background-color: rgb(115, 84, 83);
+            }
+            .ok:hover {
+                background-color: rgb(63, 33, 9);
+            }
         </style>
     </head>
     <body>
-      <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></img><a>
+        <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
         <input type="file" id="file" class="real-file-input">
         <button id="7" onclick="emulator()">ЭМУЛЯТОР 💻</button>
-        <br>
-        <br>
-      <div id="8">
-        <label for="word" id="input_word">входные данные:</label>
-        <br>
-      <label for="file"><img id="download" src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40>
-      </img></label>
-        <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово...">
-      <br>
-      <br>
-        <button onclick="show_rules()">Правила</button>
-        <p style="display: none" id="rules_list" class="result">сначала загрузи правила! ;)</p>
-        <br>
-        <br>
-        <button id="OK" class="ok">OK</button>
-      <p id="res"><b>Результат:</b></p>
-      <div id="result" class="result"><b>(пока не запущено)</b></div>
-      </div>
+        <br><br>
+        <div id="8">
+            <label for="word" id="input_word">входные данные:</label><br>
+            <label for="file"><img id="download" src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
+            <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
+            <button onclick="show_rules()">Правила</button><br><br>
+          <div style="display: block">
+            <p id="r">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
+            <textarea id="rules_list">сначала загрузи правила! ;)</textarea>
+            <br>
+            <br> 
+            </div>
+            <button id="OK" class="ok">OK</button>
+            <p id="res"><b>Результат:</b></p>
+            <div id="result" class="result"><b>(пока не запущено)</b></div>
+        </div>
         <script>
-          let v = false;
-          function show_rules() {
-            rules_list = document.getElementById("rules_list");
-            v = !v
-            if (v) {
-              rules_list.style.display = "block"
+      
+            let v = false;
+            let vis = true;
+            let visible = false;
+            let currentRules = [];   
+
+  
+            function parseRules(text) {
+                const lines = text.split(/\r?\n/);
+                const rules = [];
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (trimmed === "") continue;
+                    const parts = trimmed.split(/\s+/);
+                    if (parts.length === 3) {
+                        rules.push([parts[0], parts[1], parts[2]]);
+                    } else if (parts.length === 2) {
+                        rules.push(["", parts[0], parts[1]]);
+                    }
+                }
+                return rules;
             }
-            else {
-              rules_list.style.display = "none"
-            }
-          }
-          let vis = true;
-         function emulator() {
-            em_content = document.getElementById("8")
-           vis = !vis;
-           if (vis) {
-             em_content.style.display =                  "block"
-           }
-          else {
-            em_content.style.display = "none"
-          }
-         }
-          let visible = false;
-         function libraly() {
-            libraly_content = document.getElementById("10")
-           visible = !visible;
-           if (visible) {
-             libraly_content.style.display =                  "block"
-           }
-          else {
-            libraly_content.style.display = "none"
-          }
-         }
-    //replace one substring to other one
-    //str - what change
-    //replace - to what change
-    function replaceFirst(str, search, replace) {
-        if (search === "") {
-            return replace + str;
-        }
-        const index = str.indexOf(search);
-        if (index === -1) return str;
-        return str.slice(0, index) + replace + str.slice(index + search.length);
-    }
-
-    //Markov's machine main algorithm function
-    //word - input word
-    //rules - array of rules for Markov's machine
-    function runMarkovMachine(word, rules) {
-        const startTime = Date.now();
-        const TIMEOUT_MS = 7500;
-
-        let currentWord = word;
-
-        while (true) {
-            if (Date.now() - startTime > TIMEOUT_MS) {
-                throw new Error("превышенно время выполнения");
+            function show_rules() {
+              const r = document.getElementById("r")
+                const rules_list = document.getElementById("rules_list");
+                if (!rules_list) return;
+                v = !v;
+                r.style.display = v ? "block" : "none";
+                rules_list.style.display = v ? "block" : "none";
             }
 
-            let applied = false;
-            for (const [left, arrow, right] of rules) {
-                if (left === "" || currentWord.includes(left)) {
-                    currentWord = replaceFirst(currentWord, left, right);
+            function emulator() {
+                const em_content = document.getElementById("8");
+                if (!em_content) return;
+                vis = !vis;
+                em_content.style.display = vis ? "block" : "none";
+            }
 
-                    if (arrow === "=>") {
-                        
+
+            function libraly() {
+                const libraly_content = document.getElementById("10");
+                if (!libraly_content) return;
+                visible = !visible;
+                libraly_content.style.display = visible ? "block" : "none";
+            }
+
+            function replaceFirst(str, search, replace) {
+                if (search === "") {
+                    return replace + str;
+                }
+                const index = str.indexOf(search);
+                if (index === -1) return str;
+                return str.slice(0, index) + replace + str.slice(index + search.length);
+            }
+
+            function runMarkovMachine(word, rules) {
+                const startTime = Date.now();
+                const TIMEOUT_MS = 7500;
+                let currentWord = word;
+
+                while (true) {
+                    if (Date.now() - startTime > TIMEOUT_MS) {
+                        throw new Error("превышено время выполнения");
+                    }
+                    let applied = false;
+                    for (const [left, arrow, right] of rules) {
+                        if (left === "" || currentWord.includes(left)) {
+                            currentWord = replaceFirst(currentWord, left, right);
+                            if (arrow === "=>") {
+                                return currentWord;
+                            }
+                            applied = true;
+                            break;
+                        }
+                    }
+                    if (!applied) {
                         return currentWord;
                     }
-                    applied = true;
-                    break;
-                }
-            }
-            if (!applied) {
-                return currentWord;
-            }
-        }
-    }
-
-    //display result on the site
-    //text - result
-    //isError - true if something wrong with input file and false else.
-    function displayResult(text, isError = false) {
-        const resultDiv = document.getElementById("result");
-        resultDiv.textContent = text;
-        if (isError) {
-            resultDiv.classList.add("error");
-        } else {
-            resultDiv.classList.remove("error");
-        }
-    }
-    //reading file as lines of text
-    //file - input file
-    function readFileAsText(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = (e) => resolve(e.target.result);
-            reader.onerror = () => reject(new Error("Не удалось прочитать файл"));
-            reader.readAsText(file, "UTF-8");
-        });
-    }
-    const fileInput = document.getElementById('file');
-    const rulesList = document.getElementById('rules_list');
-    fileInput.addEventListener('change', async (event) => {
-    const file = event.target.files[0];
-    if (!file) {
-        rulesList.textContent = ''; 
-        return;
-    }
-
-    try {
-        const content = await readFileAsText(file);
-
-        const lines = content.split(/\r?\n/);
-        rulesList.innerHTML = lines.join('<br>');
-    } catch (error) {
-        console.error(error);
-        rulesList.textContent = 'Ошибка при чтении файла';
-    }
-});
-    document.getElementById("OK").addEventListener("click", async () => {
-        const wordInput = document.getElementById("word");
-        const word = wordInput.value.trim();
-        if (word === "") {
-            displayResult("Ошибка: введите слово", true);
-            return;
-        }
-
-        const fileInput = document.getElementById("file");
-        const file = fileInput.files[0];
-        if (!file) {
-            displayResult("Ошибка: выберите файл с правилами", true);
-            return;
-        }
-        
-
-        displayResult("Обработка...");
-
-        try {
-            const content = await readFileAsText(file);
-            const lines = content.split(/\r?\n/);
-            const rules = [];
-            for (const line of lines) {
-                const trimmed = line.trim();
-                if (trimmed === "") continue;
-                const parts = trimmed.split(/\s+/);
-                if (parts.length === 3) {
-                    rules.push([parts[0], parts[1], parts[2]]);
-                } else if (parts.length === 2) {
-                    rules.push(["", parts[0], parts[1]]);
                 }
             }
 
-            if (rules.length === 0) {
-                displayResult("Ошибка: файл не содержит правил", true);
-                return;
+
+            function displayResult(text, isError = false) {
+                const resultDiv = document.getElementById("result");
+                resultDiv.textContent = text;
+                if (isError) {
+                    resultDiv.classList.add("error");
+                } else {
+                    resultDiv.classList.remove("error");
+                }
             }
-            const result = runMarkovMachine(word, rules);
-            displayResult(result);
-        } catch (err) {
-            displayResult(`Ошибка: ${err.message}`, true);
-        }
-    });
-          
-</script>
-      <br>
-       <button id="9" onclick="libraly()">ТЕОРИЯ 📚</button>
-       <br>
-<div id="10" style="display: none">
-            <p>Машина Маркова, или Нормальный       алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей 
-            слов по заданным правилам
-            <br>       
 
-            Представьте, что у вас есть строка символов и набор простых правил, которые работают как команда «найти и заменить». Например, вы ищете в строке фрагмент «ab» и заменяете его на «c». Это и есть суть НАМ.
-            <br>
-            <br>
-                      <b>Работа алгоритма строго регламентирована и выполняется пошагово:</b>
-            <br>
-            Задаётся алфавит - это набор допустимых символов, с которыми работает алгоритм.
-            <br>
-                      Задаётся список правил подстановки. Правила - это команды вида <b>левая_часть → правая_часть</b>. Они применяются к текущему слову строго по порядку.
-            <br>
-            <br>
-                      <b>Выполнение начинается:</b>
-            <br>
-            <br>
-            На вход подаётся начальное слово.
+            function readFileAsText(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = () => reject(new Error("Не удалось прочитать файл"));
+                    reader.readAsText(file, "UTF-8");
+                });
+            }
 
-            <b>Алгоритм ищет первое подходящее правило и заменяет самое левое вхождение левой части на правую, создавая новое слово.</b>
-            <br>
-                      Если правило было заключительным <b>(обозначается как =>)</b>, то выполнение останавливается, и результат готов.
-            <br>
-            Если правило было обычным, то процесс повторяется заново с начала списка правил, но уже для нового слова.
-            <br>
-                      <b>Завершение работы: Алгоритм останавливается, когда:</b>
+            const fileInput = document.getElementById('file');
+            const rulesTextarea = document.getElementById('rules_list');
+
+
+            fileInput.addEventListener('change', async (event) => {
+                const file = event.target.files[0];
+                if (!file) {
+                    rulesTextarea.value = ''; 
+                    currentRules = [];
+                    rulesTextarea.value = "сначала загрузи правила! ;)";
+                    return;
+                }
+
+                try {
+                    const content = await readFileAsText(file);
+                    rulesTextarea.value = content;   
+                    currentRules = parseRules(content);  
+                    
+                } catch (error) {
+                    console.error(error);
+                    rulesTextarea.value = 'Ошибка при чтении файла';
+                    currentRules = [];
+                }
+            });
+
+            // Обработчик кнопки "OK"
+            document.getElementById("OK").addEventListener("click", () => {
+                const wordInput = document.getElementById("word");
+                const word = wordInput.value.trim();
+                if (word === "") {
+                    displayResult("Ошибка: введите слово", true);
+                    return;
+                }
+
+
+                let rules = currentRules;
+                if (rules.length === 0) {
+                    const textareaValue = rulesTextarea.value;
+                    if (!textareaValue || textareaValue.trim() === "") {
+                        displayResult("Ошибка: нет правил. Загрузите файл или введите правила в текстовое поле вручную.", true);
+                        return;
+                    }
+                    rules = parseRules(textareaValue);
+                    if (rules.length === 0) {
+                        displayResult("Ошибка: текстовое поле не содержит корректных правил", true);
+                        return;
+                    }
+                }
+
+                displayResult("Обработка...");
+                try {
+                    const result = runMarkovMachine(word, rules);
+                    displayResult(result);
+                } catch (err) {
+                    displayResult(`Ошибка: ${err.message}`, true);
+                }
+            });
+        </script>
+        <br>
+        <button id="9" onclick="libraly()">ТЕОРИЯ 📚</button>
+        <br>
+        <div id="10" style="display: none">
+            <p>Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам.</p>
+            <p>Представьте, что у вас есть строка символов и набор простых правил, которые работают как команда «найти и заменить». Например, вы ищете в строке фрагмент «ab» и заменяете его на «c». Это и есть суть НАМ.</p>
+            <p><b>Работа алгоритма строго регламентирована и выполняется пошагово:</b><br>
+            Задаётся алфавит - это набор допустимых символов, с которыми работает алгоритм.<br>
+            Задаётся список правил подстановки. Правила - это команды вида <b>левая_часть → правая_часть</b>. Они применяются к текущему слову строго по порядку.</p>
+            <p><b>Выполнение начинается:</b><br>
+            На вход подаётся начальное слово.<br>
+            <b>Алгоритм ищет первое подходящее правило и заменяет самое левое вхождение левой части на правую, создавая новое слово.</b><br>
+            Если правило было заключительным <b>(обозначается как =>)</b>, то выполнение останавливается, и результат готов.<br>
+            Если правило было обычным, то процесс повторяется заново с начала списка правил, но уже для нового слова.<br>
+            <b>Завершение работы: Алгоритм останавливается, когда:</b></p>
             <ul>
-              <li>Будет применено заключительное правило.</li>
-            <li>Не найдется ни одного правила, которое можно применить к текущему слову.</li>
+                <li>Будет применено заключительное правило.</li>
+                <li>Не найдется ни одного правила, которое можно применить к текущему слову.</li>
             </ul>
-            <b>Пример для наглядности</b>
-            <br>
-
-            Давайте рассмотрим простую задачу: <b>избавиться от повторяющихся букв в слове, состоящем из букв a, b, c.</b>Например, слово abbbcaa нужно превратить в abca. Для этого нам понадобятся следующие правила:
+            <p><b>Пример для наглядности</b><br>
+            Давайте рассмотрим простую задачу: <b>избавиться от повторяющихся букв в слове, состоящем из букв a, b, c.</b> Например, слово abbbcaa нужно превратить в abca. Для этого нам понадобятся следующие правила:</p>
             <ul>
-              <li>aa → a</li>
-
-              <li>bb → b</li>
-
-              <li>cc → c</li>
+                <li>aa → a</li>
+                <li>bb → b</li>
+                <li>cc → c</li>
             </ul>
-                  <b>Как это будет работать:</b>
-            <br>
-            Шаг 1: Просматриваем список правил. Первое правило aa → a не подходит, второе bb → b — подходит, так как в слове abbbcaa есть bb. Заменяем первое вхождение: abbbcaa → abbcaa.
-            <br>
-            Шаг 2: Снова начинаем с первого правила. Правило aa → a по-прежнему не подходит. Правило bb → b подходит: abbcaa → abcaa.
-            <br>
-            Шаг 3: Снова проверяем. Теперь подходит правило aa → a: abcaa → abca.
-            <br>
-            Шаг 4: Просматриваем все правила. Ни одно из них не подходит к слову abca. Выполнение алгоритма завершено.     <br> <br>
-            <b style="color: rgb(188, 52, 129)">в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона.</b></br>
-            <br>
-            <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич</img></p>
-</div>
-        <br>
-        <br>
-        <br>
-        <br>
-        
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.2.0)(fourth GUI update)</p>
+            <p><b>Как это будет работать:</b><br>
+            Шаг 1: Просматриваем список правил. Первое правило aa → a не подходит, второе bb → b — подходит, так как в слове abbbcaa есть bb. Заменяем первое вхождение: abbbcaa → abbcaa.<br>
+            Шаг 2: Снова начинаем с первого правила. Правило aa → a по-прежнему не подходит. Правило bb → b подходит: abbcaa → abcaa.<br>
+            Шаг 3: Снова проверяем. Теперь подходит правило aa → a: abcaa → abca.<br>
+            Шаг 4: Просматриваем все правила. Ни одно из них не подходит к слову abca. Выполнение алгоритма завершено.</p>
+            <p><b style="color: rgb(188, 52, 129)">в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона.</b></p>
+            <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич
+        </div>
+        <br><br><br><br>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.2.1)(fifth GUI update)</p>
     </body>
 </html>
