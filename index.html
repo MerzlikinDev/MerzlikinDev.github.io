@@ -9,9 +9,8 @@
             .libraly {
                 display: none;
             }
-            /* лишняя скобка удалена */
             p {
-                font-size: 16px;   /* исправлено: были 50 без единиц */
+                font-size: 16px; 
             }
             body {
                 font-family: 'Inter', -apple-system, sans-serif;
@@ -58,7 +57,7 @@
                 letter-spacing: 0.3px;
             }
             textarea {
-                display: none;   /* изначально скрыто, показывается по кнопке "Правила" */
+                display: none;
                 background: rgb(134, 114, 89);
                 color: white;
                 font-weight: 1000;
@@ -120,7 +119,7 @@
             <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
             <button onclick="show_rules()">Правила</button><br><br>
           <div style="display: block">
-            <p id="r">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
+            <p id="r" style="display: none">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
             <textarea id="rules_list">сначала загрузи правила! ;)</textarea>
             <br>
             <br> 
