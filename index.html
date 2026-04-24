@@ -134,10 +134,14 @@
         <script>
 
             function reload() {
-              if (confirm("вы уверенны что хотите очистить правила? страница будет перезагружена!")){
-                location.reload()
+              if (document.getElementById("rules_list").value == ""){
+                alert("чтобы что-то стереть, сначала надо что-то ввести!")
               }
-            }
+              else if(confirm("вы уверенны что хотите очистить правила? страница будет перезагружена!")){
+                  location.reload()
+                }
+            
+          }
             let visible = false;
             let currentRules = [];   
 
