@@ -120,6 +120,9 @@
             <label for="file"><img id="download"  src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
             <br>
             <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
+          <br>
+          <br>
+          <button onclick="reload()">очистить правила</button>
             <br>
             <br> 
             </div>
@@ -129,11 +132,16 @@
             <div id="result" class="result"><b>(пока не запущено)</b></div>
         </div>
         <script>
-      
+
+            function reload() {
+              if (confirm("вы уверенны что хотите очистить правила? страница будет перезагружена!")){
+                location.reload()
+              }
+            }
             let visible = false;
             let currentRules = [];   
 
-  
+
             function parseRules(text) {
                 const lines = text.split(/\r?\n/);
                 const rules = [];
