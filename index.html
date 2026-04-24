@@ -48,7 +48,7 @@
                 font-weight: 1000;
                 font-size: 1rem;
                 padding: 0.75rem 1.8rem;
-                border-radius: 60px;
+                border-radius: 20px;
                 border: none;
                 cursor: pointer;
                 transition: var(--transition);
@@ -57,13 +57,12 @@
                 letter-spacing: 0.3px;
             }
             textarea {
-                display: none;
                 background: rgb(134, 114, 89);
                 color: white;
                 font-weight: 1000;
                 font-size: 1rem;
                 padding: 0.75rem 1.8rem;
-                border-radius: 60px;
+                border-radius: 20px;
                 border: none;
                 transition: var(--transition);
                 box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
@@ -105,33 +104,32 @@
             .ok:hover {
                 background-color: rgb(63, 33, 9);
             }
+            textarea::placeholder {
+              color: white;
+              opacity: 0.5;
+            }
         </style>
     </head>
     <body>
         <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
         <input type="file" id="file" class="real-file-input">
-        <button id="7" onclick="emulator()">ЭМУЛЯТОР 💻</button>
-        <br><br>
         <div id="8">
-            <label for="word" id="input_word">входные данные:</label><br>
-            <label for="file"><img id="download" src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
             <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
-            <button onclick="show_rules()">Правила</button><br><br>
-          <div style="display: block">
-            <p id="r" style="display: none">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
-            <textarea id="rules_list">сначала загрузи правила! ;)</textarea>
+            <p id="r">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
+            <label for="file"><img id="download"  src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
+            <br>
+            <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
             <br>
             <br> 
             </div>
-            <button id="OK" class="ok">OK</button>
+            <button id="OK" class="ok" style="display: none">OK</button>
+            <label for="OK"><img src="https://images.icon-icons.com/2802/PNG/512/ok_sign_icon_178740.png" height="40" title="запустить программу"></img></label>
             <p id="res"><b>Результат:</b></p>
             <div id="result" class="result"><b>(пока не запущено)</b></div>
         </div>
         <script>
       
-            let v = false;
-            let vis = true;
             let visible = false;
             let currentRules = [];   
 
@@ -150,21 +148,6 @@
                     }
                 }
                 return rules;
-            }
-            function show_rules() {
-              const r = document.getElementById("r")
-                const rules_list = document.getElementById("rules_list");
-                if (!rules_list) return;
-                v = !v;
-                r.style.display = v ? "block" : "none";
-                rules_list.style.display = v ? "block" : "none";
-            }
-
-            function emulator() {
-                const em_content = document.getElementById("8");
-                if (!em_content) return;
-                vis = !vis;
-                em_content.style.display = vis ? "block" : "none";
             }
 
 
@@ -289,7 +272,8 @@
             });
         </script>
         <br>
-        <button id="9" onclick="libraly()">ТЕОРИЯ 📚</button>
+        <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
+        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="60" title="теория"></img></label>
         <br>
         <div id="10" style="display: none">
             <p>Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам.</p>
@@ -323,6 +307,6 @@
             <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич
         </div>
         <br><br><br><br>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.2.1)(fifth GUI update)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.2.7)(pre-last gui update)</p>
     </body>
 </html>
