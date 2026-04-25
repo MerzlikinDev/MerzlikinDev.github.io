@@ -68,12 +68,14 @@
                 box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
                 border: 1px solid rgba(255,255,255,0.05);
                 letter-spacing: 0.3px;
-                width: 80%;
+                width: 18%;
                 min-height: 150px;
                 font-family: "Consolas", 'Inter', monospace;
             }
             .result {
                 font-family: "Consolas", 'Inter', -apple-system, sans-serif;
+                font-weight: 900;
+                font-size: x-large;
             }
             a {
                 color: rgba(30, 57, 75);
@@ -114,31 +116,38 @@
         <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
         <input type="file" id="file" class="real-file-input">
+        <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
         <div id="8">
-            <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
-            <p id="r">внимание! в данной (бета) версии режима правил, если вы загрузили правила из файла, то с помощью рук их ввести не получится и наоборот (только с перезагрузкой страницы)</p>
+            
+            <p id="res"><b>Результат:</b></p>
+            <div id="result" class="result"><label><b>(пока не запущено)</b></label></div>
+        </div>
+            <br>
             <label for="file"><img id="download"  src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
+            
+            <button id="f" onclick="reload()" style="display: none"></button>
+          
+            <label for="f"><img title="очистить поле правил" style="border-radius: 30%"src="https://avatars.mds.yandex.net/i?id=b13565dc5c765a14ec97de02d83455fc_sr-10414886-images-thumbs&n=13" height="40"></img></label>
+            <button id="OK" class="ok" style="display: none">OK</button>
+            <label for="OK"><img src="https://images.icon-icons.com/2802/PNG/512/ok_sign_icon_178740.png" height="40" title="запустить программу"></img></label>
+            <br>
             <br>
             <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
           <br>
           <br>
-          <button onclick="reload()">очистить правила</button>
-            <br>
-            <br> 
+          
+
             </div>
-            <button id="OK" class="ok" style="display: none">OK</button>
-            <label for="OK"><img src="https://images.icon-icons.com/2802/PNG/512/ok_sign_icon_178740.png" height="40" title="запустить программу"></img></label>
-            <p id="res"><b>Результат:</b></p>
-            <div id="result" class="result"><b>(пока не запущено)</b></div>
+            
         </div>
         <script>
 
             function reload() {
               if (document.getElementById("rules_list").value == ""){
-                alert("чтобы что-то стереть, сначала надо что-то ввести!")
+                alert("чтобы что-то стереть, сначала надо что-то ввести!");
               }
-              else if(confirm("вы уверенны что хотите очистить правила? страница будет перезагружена!")){
-                  location.reload()
+              else if(confirm("вы уверенны что хотите очистить правила? Их нельзя будет вернуть!")){
+                  document.getElementById("rules_list").value = "";
                 }
             
           }
@@ -283,9 +292,8 @@
                 }
             });
         </script>
-        <br>
         <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
-        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="60" title="теория"></img></label>
+        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория"></img></label>
         <br>
         <div id="10" style="display: none">
             <p>Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам.</p>
@@ -319,6 +327,6 @@
             <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич
         </div>
         <br><br><br><br>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.2.7)(pre-last gui update)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.3.0)(pre-last gui update 2)</p>
     </body>
 </html>
