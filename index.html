@@ -68,7 +68,7 @@
                 box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
                 border: 1px solid rgba(255,255,255,0.05);
                 letter-spacing: 0.3px;
-                width: 18%;
+                width: 30%;
                 min-height: 150px;
                 font-family: "Consolas", 'Inter', monospace;
             }
@@ -110,12 +110,27 @@
               color: white;
               opacity: 0.5;
             }
+            .toast {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: rgb(30, 57, 75);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 20px;
+                font-size: 14px;
+                opacity: 0;
+                transition: opacity 0.3s;
+                pointer-events: none;
+                z-index: 1000;
+            }
         </style>
     </head>
     <body>
         <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
         <input type="file" id="file" class="real-file-input">
+        
         <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
         <div id="8">
             
@@ -135,12 +150,18 @@
             <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
           <br>
           <br>
-          
-
-            </div>
-            
         </div>
+        <div id="toast" class="toast"></div>
+
         <script>
+            function showToast(message, duration = 2000) {
+                const toast = document.getElementById("toast");
+                toast.textContent = message;
+                toast.style.opacity = "1";
+                setTimeout(() => {
+                    toast.style.opacity = "0";
+                }, duration);
+            }
 
             function reload() {
               if (document.getElementById("rules_list").value == ""){
@@ -148,12 +169,12 @@
               }
               else if(confirm("вы уверенны что хотите очистить правила? Их нельзя будет вернуть!")){
                   document.getElementById("rules_list").value = "";
+                  syncRules();
+                  showToast("Правила очищены");
                 }
-            
-          }
-            let visible = false;
+            }
+          
             let currentRules = [];   
-
 
             function parseRules(text) {
                 const lines = text.split(/\r?\n/);
@@ -161,17 +182,44 @@
                 for (const line of lines) {
                     const trimmed = line.trim();
                     if (trimmed === "") continue;
-                    const parts = trimmed.split(/\s+/);
-                    if (parts.length === 3) {
-                        rules.push([parts[0], parts[1], parts[2]]);
-                    } else if (parts.length === 2) {
-                        rules.push(["", parts[0], parts[1]]);
+             
+                    let left, arrow, right;
+                    if (trimmed.includes("=>")) {
+                        const parts = trimmed.split(/\s*=>\s*/);
+                        left = parts[0].trim();
+                        right = parts[1].trim();
+                        arrow = "=>";
+                    } else if (trimmed.includes("->")) {
+                        const parts = trimmed.split(/\s*->\s*/);
+                        left = parts[0].trim();
+                        right = parts[1].trim();
+                        arrow = "->";
+                    } else {
+           
+                        const parts = trimmed.split(/\s+/);
+                        if (parts.length === 3) {
+                            left = parts[0];
+                            arrow = parts[1];
+                            right = parts[2];
+                        } else if (parts.length === 2) {
+                            left = "";
+                            arrow = parts[0];
+                            right = parts[1];
+                        } else {
+                            continue;
+                        }
                     }
+                    rules.push([left, arrow, right]);
                 }
                 return rules;
             }
 
+            function syncRules() {
+                const textareaValue = document.getElementById("rules_list").value;
+                currentRules = parseRules(textareaValue);
+            }
 
+            let visible = false;
             function libraly() {
                 const libraly_content = document.getElementById("10");
                 if (!libraly_content) return;
@@ -214,7 +262,6 @@
                 }
             }
 
-
             function displayResult(text, isError = false) {
                 const resultDiv = document.getElementById("result");
                 resultDiv.textContent = text;
@@ -237,29 +284,30 @@
             const fileInput = document.getElementById('file');
             const rulesTextarea = document.getElementById('rules_list');
 
-
             fileInput.addEventListener('change', async (event) => {
                 const file = event.target.files[0];
                 if (!file) {
-                    rulesTextarea.value = ''; 
-                    currentRules = [];
-                    rulesTextarea.value = "сначала загрузи правила! ;)";
                     return;
                 }
 
                 try {
                     const content = await readFileAsText(file);
                     rulesTextarea.value = content;   
-                    currentRules = parseRules(content);  
-                    
+                    syncRules();
+                    showToast(`Файл "${file.name}" загружен`, 3000);
+                    fileInput.value = '';
                 } catch (error) {
                     console.error(error);
                     rulesTextarea.value = 'Ошибка при чтении файла';
-                    currentRules = [];
+                    syncRules();
+                    showToast("Ошибка при чтении файла", 3000);
                 }
             });
 
-            // Обработчик кнопки "OK"
+            rulesTextarea.addEventListener('input', () => {
+                syncRules();
+            });
+
             document.getElementById("OK").addEventListener("click", () => {
                 const wordInput = document.getElementById("word");
                 const word = wordInput.value.trim();
@@ -268,29 +316,21 @@
                     return;
                 }
 
-
-                let rules = currentRules;
-                if (rules.length === 0) {
-                    const textareaValue = rulesTextarea.value;
-                    if (!textareaValue || textareaValue.trim() === "") {
-                        displayResult("Ошибка: нет правил. Загрузите файл или введите правила в текстовое поле вручную.", true);
-                        return;
-                    }
-                    rules = parseRules(textareaValue);
-                    if (rules.length === 0) {
-                        displayResult("Ошибка: текстовое поле не содержит корректных правил", true);
-                        return;
-                    }
+                if (currentRules.length === 0) {
+                    displayResult("Ошибка: нет правил. Загрузите файл или введите правила в текстовое поле вручную.", true);
+                    return;
                 }
 
                 displayResult("Обработка...");
                 try {
-                    const result = runMarkovMachine(word, rules);
+                    const result = runMarkovMachine(word, currentRules);
                     displayResult(result);
                 } catch (err) {
                     displayResult(`Ошибка: ${err.message}`, true);
                 }
             });
+
+            syncRules();
         </script>
         <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
         <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория"></img></label>
@@ -327,6 +367,6 @@
             <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич
         </div>
         <br><br><br><br>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.3.0)(pre-last gui update 2)</p>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.3.5)</p>
     </body>
 </html>
