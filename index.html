@@ -124,6 +124,45 @@
                 pointer-events: none;
                 z-index: 1000;
             }
+           .theory-card {
+            position: fixed;
+            right: 25px;
+            top: 100px;
+            width: 500px;
+            opacity: 1;
+            max-height: calc(100% - 130px);
+            overflow-y: auto;
+            background: rgba(215, 207, 191, 0); 
+            border-radius: 28px;
+            padding: 18px 20px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            z-index: 1000;
+      
+        }
+     
+@media (max-width: 900px) {
+    .theory-card {
+        position: static;
+        width: auto;      
+        margin: 20px 15px;   
+        max-height: none;    
+        overflow-y: visible; 
+        background: rgba(215, 207, 191, 0.9);
+        border-radius: 20px;
+        padding: 15px;
+        z-index: auto;
+    }
+    
+   
+    body {
+        padding: 10px;
+    }
+    
+    label[for="9"] {
+        display: inline-block;
+        margin-top: 20px;
+    }
+}
         </style>
     </head>
     <body>
@@ -152,6 +191,36 @@
           <br>
           <br>
         </div>
+                  <div id="10" class="theory-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3>Теория</h3>
+    </div>
+    <p><strong>Нормальный алгоритм Маркова</strong> - модель вычислений, работающая со строками. Есть список правил вида <code>левая → правая</code>. На каждом шаге ищется <strong>самое левое вхождение</strong> левой части и заменяется на правую. Правила просматриваются по порядку сверху вниз.</p>
+    <p>Если правило содержит <code>=></code> (заключительное), работа останавливается сразу после замены.<br>
+    Если ни одно правило не применимо - алгоритм завершается.</p>
+
+    <h4>Пример 1: удаление повторов букв</h4>
+    <div class="example-inline">
+        <code>aa -> a</code><br>
+        <code>bb -> b</code><br>
+        <code>cc -> c</code><br>
+        <strong>Вход:</strong> <code>abbbcaa</code><strong> Результат:</strong> <code> abca</code>
+    </div>
+
+    <h4>Пример 2: удвоение каждого символа</h4>
+    <div class="example-inline">
+        <code>a -> aa</code><br>
+        <code>b -> bb</code><br>
+        <strong>Вход:</strong> <code>ab</code><code><strong> Результат:</strong> А резульатата не будет, т.к программа зациклится</code>
+    </div>
+
+    <h4>Пример 3: удаление всех 'x'</h4>
+    <div class="example-inline">
+        <code>x -></code> (пустая правая часть)<br>
+        <strong>Вход:</strong> <code>xxaxxb</code> <strong>Результат:</strong><code> ab</code>
+    </div>
+    <p style="font-size: 0.75rem; margin-top: 12px 0.7; font-size: 14px">Правила в эмулятор загружаются через файл .txt или вводятся в поле. Формат: <code>левая_часть -> правая_часть</code> или <code>левая_часть => правая_часть</code></p>
+</div>
         <div id="toast" class="toast"></div>
 
         <script>
@@ -220,7 +289,7 @@
                 currentRules = parseRules(textareaValue);
             }
 
-            let visible = false;
+            let visible = true;
             function libraly() {
                 const libraly_content = document.getElementById("10");
                 if (!libraly_content) return;
@@ -336,38 +405,8 @@
         <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
         <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория"></img></label>
         <br>
-        <div id="10" style="display: none">
-            <p>Машина Маркова, или Нормальный алгоритм Маркова (НАМ) - это одна из фундаментальных моделей в теории алгоритмов, которая формализует понятие «алгоритм» с помощью замены частей слов по заданным правилам.</p>
-            <p>Представьте, что у вас есть строка символов и набор простых правил, которые работают как команда «найти и заменить». Например, вы ищете в строке фрагмент «ab» и заменяете его на «c». Это и есть суть НАМ.</p>
-            <p><b>Работа алгоритма строго регламентирована и выполняется пошагово:</b><br>
-            Задаётся алфавит - это набор допустимых символов, с которыми работает алгоритм.<br>
-            Задаётся список правил подстановки. Правила - это команды вида <b>левая_часть → правая_часть</b>. Они применяются к текущему слову строго по порядку.</p>
-            <p><b>Выполнение начинается:</b><br>
-            На вход подаётся начальное слово.<br>
-            <b>Алгоритм ищет первое подходящее правило и заменяет самое левое вхождение левой части на правую, создавая новое слово.</b><br>
-            Если правило было заключительным <b>(обозначается как =>)</b>, то выполнение останавливается, и результат готов.<br>
-            Если правило было обычным, то процесс повторяется заново с начала списка правил, но уже для нового слова.<br>
-            <b>Завершение работы: Алгоритм останавливается, когда:</b></p>
-            <ul>
-                <li>Будет применено заключительное правило.</li>
-                <li>Не найдется ни одного правила, которое можно применить к текущему слову.</li>
-            </ul>
-            <p><b>Пример для наглядности</b><br>
-            Давайте рассмотрим простую задачу: <b>избавиться от повторяющихся букв в слове, состоящем из букв a, b, c.</b> Например, слово abbbcaa нужно превратить в abca. Для этого нам понадобятся следующие правила:</p>
-            <ul>
-                <li>aa → a</li>
-                <li>bb → b</li>
-                <li>cc → c</li>
-            </ul>
-            <p><b>Как это будет работать:</b><br>
-            Шаг 1: Просматриваем список правил. Первое правило aa → a не подходит, второе bb → b — подходит, так как в слове abbbcaa есть bb. Заменяем первое вхождение: abbbcaa → abbcaa.<br>
-            Шаг 2: Снова начинаем с первого правила. Правило aa → a по-прежнему не подходит. Правило bb → b подходит: abbcaa → abcaa.<br>
-            Шаг 3: Снова проверяем. Теперь подходит правило aa → a: abcaa → abca.<br>
-            Шаг 4: Просматриваем все правила. Ни одно из них не подходит к слову abca. Выполнение алгоритма завершено.</p>
-            <p><b style="color: rgb(188, 52, 129)">в нашем эмуляторе вы загружаете txt файл с правилами в котором по строчкам они расписанны в формате левая_сторона ->/=> правая_сторона.</b></p>
-            <img src="https://i.bigenc.ru/resizer/resize?sign=9_FjSu7HtnIHbDtl0KaVyA&filename=vault/6c2769c0e6ba00e78b8210c2d36a2c09.webp&width=1200" width=100 style="border-radius: 50%"><br>Марков Андрей Андреевич
         </div>
         <br><br><br><br>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.4.0)</p>
+        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.4.0)</p>
     </body>
 </html>
