@@ -127,12 +127,14 @@
            .theory-card {
             position: fixed;
             right: 25px;
-            top: 100px;
+            top: 145px;
             width: 500px;
+            height: 480px;
             opacity: 1;
             max-height: calc(100% - 130px);
             overflow-y: auto;
-            background: rgba(215, 207, 191, 0); 
+            background: rgba(134, 114, 89); 
+            color: white;
             border-radius: 28px;
             padding: 18px 20px;
             font-family: 'Inter', -apple-system, sans-serif;
@@ -169,6 +171,9 @@
         <a href="https://github.com/MerzlikinDev/MerzlikinDev.github.io" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1280px-Octicons-mark-github.svg.png" width=30 height=30 align="right" title="github"></a>
         <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
+        <br>
+        <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
+        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория" align="right"></img></label>
         <input type="file" id="file" class="real-file-input">
         
         <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
@@ -402,11 +407,8 @@
 
             syncRules();
         </script>
-        <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
-        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория"></img></label>
         <br>
         </div>
-        <br><br><br><br>
-        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 0.4.0)</p>
+        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.0.0)</p>
     </body>
 </html>
