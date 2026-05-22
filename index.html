@@ -129,7 +129,7 @@
             right: 25px;
             top: 145px;
             width: 500px;
-            height: 480px;
+            height: 350px;
             opacity: 1;
             max-height: calc(100% - 130px);
             overflow-y: auto;
@@ -145,13 +145,16 @@
 @media (max-width: 900px) {
     .theory-card {
         position: static;
-        width: auto;      
-        margin: 20px 15px;   
-        max-height: none;    
-        overflow-y: visible; 
-        background: rgba(215, 207, 191, 0.9);
-        border-radius: 20px;
-        padding: 15px;
+        width: 50%;
+        height: 350px;
+        opacity: 1;
+        max-height: calc(100% - 130px);
+        overflow-y: auto;
+        background: rgba(134, 114, 89); 
+        color: white;
+        border-radius: 28px;
+        padding: 18px 20px;
+        font-family: 'Inter', -apple-system, sans-serif;
         z-index: auto;
     }
     
@@ -171,12 +174,12 @@
         <a href="https://github.com/MerzlikinDev/MerzlikinDev.github.io" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1280px-Octicons-mark-github.svg.png" width=30 height=30 align="right" title="github"></a>
         <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
         <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
-        <br>
-        <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
-        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория" align="right"></img></label>
+
         <input type="file" id="file" class="real-file-input">
         
-        <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br><br>
+        <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br>
+              <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
+        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория" ></img></label>
         <div id="8">
             
             <p id="res"><b>Результат:</b></p>
@@ -190,6 +193,9 @@
             <label for="f"><img title="очистить поле правил" style="border-radius: 30%"src="https://avatars.mds.yandex.net/i?id=b13565dc5c765a14ec97de02d83455fc_sr-10414886-images-thumbs&n=13" height="40"></img></label>
             <button id="OK" class="ok" style="display: none">OK</button>
             <label for="OK"><img src="https://images.icon-icons.com/2802/PNG/512/ok_sign_icon_178740.png" height="40" title="запустить программу"></img></label>
+            
+            <button id="step" style="display: none" onclick="one_step()">OK</button>
+            <label for="step"><img src="https://images.icon-icons.com/3375/PNG/512/circle_icon_211799.png" height="45" title="сделать один шаг"></img></label>
             <br>
             <br>
             <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
@@ -229,6 +235,56 @@
         <div id="toast" class="toast"></div>
 
         <script>
+          
+          
+          
+          
+let i = 0;
+let curword;
+function one_step() {
+    if (i === 0) {
+      curword = document.getElementById("word").value
+      last_curword = document.getElementById("word").value
+    }
+    if (last_curword != document.getElementById("word").value) {
+      i = 1
+      curword = document.getElementById("word").value
+      last_curword = document.getElementById("word").value
+    } else {
+      i += 1
+    }
+    const rules=parseRules(document.getElementById("rules_list").value);
+    
+    const result = runMarkovMachine_step(curword, rules);
+    curword = result;
+    document.getElementById("result").textContent = "Шаг номер " + i + ": "+curword;
+}    
+    let count; 
+    count = 0
+    function runMarkovMachine_step(word, rules) {
+    let currentWord = word;
+    if (count >= rules.length) {
+      count = 0
+    }
+    for (const [left, arrow, right] of [rules[count]]) {
+        if (left === "" || currentWord.includes(left)) {
+            currentWord = replaceFirst(currentWord, left, right);
+            count += 1
+            return currentWord;
+        }
+        count += 1
+        return currentWord;
+    }
+}
+  
+          
+          
+          
+          
+          
+          
+          
+          
             function showToast(message, duration = 2000) {
                 const toast = document.getElementById("toast");
                 toast.textContent = message;
@@ -409,6 +465,6 @@
         </script>
         <br>
         </div>
-        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.0.0)</p>
+        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.3.5)</p>
     </body>
 </html>
