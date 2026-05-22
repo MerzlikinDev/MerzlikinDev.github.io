@@ -1,1 +1,1 @@
-this site is my first try in HTML, CSS and js. If you have any ideas or bug reports about my site, please contact me.
+This website is an emulator of normal Markov algorithms, where you can: write rules and input words, execute a program, execute a program step by step, erase rules, read theory, etc. This website will continue to evolve, and I will add and improve its features.
