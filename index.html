@@ -198,7 +198,7 @@
             <label for="step"><img src="https://images.icon-icons.com/3375/PNG/512/circle_icon_211799.png" height="45" title="сделать один шаг"></img></label>
             <br>
             <br>
-            <textarea id="rules_list" placeholder="сначала загрузи правила! ;)"></textarea>
+            <textarea id="rules_list" placeholder="сначала загрузи правила! ;)" white-space="pre-wrap"></textarea>
           <br>
           <br>
         </div>
@@ -216,6 +216,9 @@
         <code>bb -> b</code><br>
         <code>cc -> c</code><br>
         <strong>Вход:</strong> <code>abbbcaa</code><strong> Результат:</strong> <code> abca</code>
+      <br>
+      <br>
+      <button id='example1' onclick="show_ex1()" style="background: rgb(93, 108, 163)">загрузить пример</button>
     </div>
 
     <h4>Пример 2: удвоение каждого символа</h4>
@@ -223,12 +226,18 @@
         <code>a -> aa</code><br>
         <code>b -> bb</code><br>
         <strong>Вход:</strong> <code>ab</code><code><strong> Результат:</strong> А резульатата не будет, т.к программа зациклится</code>
+      <br>
+      <br>
+      <button id='example2' onclick="show_ex2()" style="background: rgb(93, 108, 163)">загрузить пример</button>
     </div>
 
     <h4>Пример 3: удаление всех 'x'</h4>
     <div class="example-inline">
         <code>x -></code> (пустая правая часть)<br>
         <strong>Вход:</strong> <code>xxaxxb</code> <strong>Результат:</strong><code> ab</code>
+      <br>
+      <br>
+      <button id='example3' onclick="show_ex3()" style="background: rgb(93, 108, 163)">загрузить пример</button>
     </div>
     <p style="font-size: 0.75rem; margin-top: 12px 0.7; font-size: 14px">Правила в эмулятор загружаются через файл .txt или вводятся в поле. Формат: <code>левая_часть -> правая_часть</code> или <code>левая_часть => правая_часть</code></p>
 </div>
@@ -236,9 +245,24 @@
 
         <script>
           
-          
-          
-          
+ function show_ex1() {
+    const text = "aa -> a\nbb -> b\ncc -> c";
+    document.getElementById("word").value = "abbbcaa";
+    document.getElementById("rules_list").value = text;
+    syncRules();
+}
+ function show_ex2() {
+    const text = "a -> aa\nb -> bb"
+    document.getElementById("word").value = "ab";
+    document.getElementById("rules_list").value = text;
+    syncRules();
+}
+ function show_ex3() {
+    const text = "x ->"
+    document.getElementById("word").value = "xxaxxb";
+    document.getElementById("rules_list").value = text;
+    syncRules();
+}         
 let i = 0;
 let curword;
 function one_step() {
@@ -463,8 +487,8 @@ function one_step() {
 
             syncRules();
         </script>
-        <br>
         </div>
-        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.3.5)</p>
+<br>
+        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.5.0)</p>
     </body>
 </html>
