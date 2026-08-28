@@ -1,130 +1,129 @@
 <!DOCTYPE html>
-
 <html lang="ru">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Эмулятор НАМ</title>
-        <link rel="icon" href="https://i.pinimg.com/736x/c2/f4/7f/c2f47f9eb58cb3b0fc3e644815e74327c.jpg" type="image/png">
-        <style>
-            .libraly {
-                display: none;
-            }
-            p {
-                font-size: 16px; 
-            }
-            body {
-                font-family: 'Inter', -apple-system, sans-serif;
-                background-color: rgb(215, 207, 191);
-                font-size: 16px;
-            }
-            button {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                background: rgb(134, 114, 89);
-                color: white;
-                font-weight: 1000;
-                font-size: 1rem;
-                padding: 0.75rem 1.8rem;
-                border-radius: 15px;
-                border: none;
-                cursor: pointer;
-                transition: var(--transition);
-                box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
-                border: 1px solid rgba(255,255,255,0.05);
-                letter-spacing: 0.3px;
-            }
-            button:hover {
-                background-color: rgb(30, 57, 75);
-                transform: translateY(-2px);
-            }
-            input {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                background: rgb(134, 114, 89);
-                color: white;
-                font-weight: 1000;
-                font-size: 1rem;
-                padding: 0.75rem 1.8rem;
-                border-radius: 20px;
-                border: none;
-                cursor: pointer;
-                transition: var(--transition);
-                box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
-                border: 1px solid rgba(255,255,255,0.05);
-                letter-spacing: 0.3px;
-            }
-            textarea {
-                background: rgb(134, 114, 89);
-                color: white;
-                font-weight: 1000;
-                font-size: 1rem;
-                padding: 0.75rem 1.8rem;
-                border-radius: 20px;
-                border: none;
-                transition: var(--transition);
-                box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
-                border: 1px solid rgba(255,255,255,0.05);
-                letter-spacing: 0.3px;
-                width: 30%;
-                min-height: 150px;
-                font-family: "Consolas", 'Inter', monospace;
-            }
-            .result {
-                font-family: "Consolas", 'Inter', -apple-system, sans-serif;
-                font-weight: 900;
-                font-size: x-large;
-            }
-            a {
-                color: rgba(30, 57, 75);
-                font-size: 15px;
-            } 
-            h1:hover {
-                color: rgb(30, 57, 75); 
-            }
-            a:hover {
-                color: black;
-            }
-            .real-file-input {
-                display: none;
-            }
-            img {
-                vertical-align: bottom;
-            }
-            input::placeholder {
-                color: white;  
-                opacity: 0.5;             
-            }
-            img:hover {
-                transform: translateY(-2px);
-            }
-            .ok {
-                background-color: rgb(115, 84, 83);
-            }
-            .ok:hover {
-                background-color: rgb(63, 33, 9);
-            }
-            textarea::placeholder {
-              color: white;
-              opacity: 0.5;
-            }
-            .toast {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background-color: rgb(30, 57, 75);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 20px;
-                font-size: 14px;
-                opacity: 0;
-                transition: opacity 0.3s;
-                pointer-events: none;
-                z-index: 1000;
-            }
-           .theory-card {
+<head>
+    <meta charset="UTF-8">
+    <title>Сайт с логическими машинами!</title>
+
+    <style>
+        .libraly {
+            display: none;
+        }
+        p {
+            font-size: 16px; 
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: rgb(215, 207, 191);
+            font-size: 16px;
+        }
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgb(134, 114, 89);
+            color: white;
+            font-weight: 1000;
+            font-size: 1rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+            letter-spacing: 0.3px;
+        }
+        button:hover {
+            background-color: rgb(30, 57, 75);
+            transform: translateY(-2px);
+        }
+        input {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(134, 114, 89);
+            color: white;
+            font-weight: 1000;
+            font-size: 1rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+            letter-spacing: 0.3px;
+        }
+        textarea {
+            background: rgb(134, 114, 89);
+            color: white;
+            font-weight: 1000;
+            font-size: 1rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 20px;
+            border: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(93, 74, 58, 0.1);
+            border: 1px solid rgba(255,255,255,0.05);
+            letter-spacing: 0.3px;
+            width: 30%;
+            min-height: 150px;
+            font-family: "Consolas", 'Inter', monospace;
+        }
+        .result {
+            font-family: "Consolas", 'Inter', -apple-system, sans-serif;
+            font-weight: 900;
+            font-size: x-large;
+        }
+        a {
+            color: rgba(30, 57, 75);
+            font-size: 15px;
+        } 
+        h1:hover {
+            color: rgb(30, 57, 75); 
+        }
+        a:hover {
+            color: black;
+        }
+        .real-file-input {
+            display: none;
+        }
+        img {
+            vertical-align: bottom;
+        }
+        input::placeholder {
+            color: white;  
+            opacity: 0.5;             
+        }
+        img:hover {
+            transform: translateY(-2px);
+        }
+        .ok {
+            background-color: rgb(115, 84, 83);
+        }
+        .ok:hover {
+            background-color: rgb(63, 33, 9);
+        }
+        textarea::placeholder {
+          color: white;
+          opacity: 0.5;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgb(30, 57, 75);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .theory-card {
             position: fixed;
             right: 25px;
             top: 73px;
@@ -139,356 +138,47 @@
             padding: 18px 20px;
             font-family: 'Inter', -apple-system, sans-serif;
             z-index: 1000;
-      
+        }
+
+        .center {
+            text-align: center;
         }
      
-@media (max-width: 900px) {
-    .theory-card {
-        position: static;
-        width: 50%;
-        height: 350px;
-        opacity: 1;
-        max-height: calc(100% - 130px);
-        overflow-y: auto;
-        background: rgba(134, 114, 89); 
-        color: white;
-        border-radius: 28px;
-        padding: 18px 20px;
-        font-family: 'Inter', -apple-system, sans-serif;
-        z-index: auto;
-    }
-    
-   
-    body {
-        padding: 10px;
-    }
-    
-    label[for="9"] {
-        display: inline-block;
-        margin-top: 20px;
-    }
-}
-        </style>
-    </head>
-    <body>
-        <a href="https://github.com/MerzlikinDev/MerzlikinDev.github.io" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1280px-Octicons-mark-github.svg.png" width=30 height=30 align="right" title="github"></a>
-        <a href="https://vk.com/dzuakuy" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/6577/6577188.png" width=30 height=30 align="right" title="сообщить о багах"></a>
-        <h1 id="welcome">Добро пожаловать в эмулятор НАМ</h1>
-
-        <input type="file" id="file" class="real-file-input">
-        
-        <input style="font-family: sans-serif" type="text" id="word" placeholder="введите входное слово..."><br>
-              <button id="9" onclick="libraly()" style="display: none">ТЕОРИЯ</button>
-        <label for="9"><img src="https://static.vecteezy.com/system/resources/previews/047/664/506/large_2x/book-icon-open-book-sign-and-symbol-transparent-background-free-png.png" height="52" title="теория" ></img></label>
-        <div id="8">
-            
-            <p id="res"><b>Результат:</b></p>
-            <div id="result" class="result"><label><b>(пока не запущено)</b></label></div>
-        </div>
-            <br>
-            <label for="file"><img id="download"  src="https://i.pinimg.com/originals/bc/9c/a8/bc9ca8133e1efe849b129ae482f33a33.png" title="загрузить файл с правилами" width=40 height=40></label>
-            
-            <button id="f" onclick="reload()" style="display: none"></button>
-          
-            <label for="f"><img title="очистить поле правил" style="border-radius: 30%"src="https://avatars.mds.yandex.net/i?id=b13565dc5c765a14ec97de02d83455fc_sr-10414886-images-thumbs&n=13" height="40"></img></label>
-            <button id="OK" class="ok" style="display: none">OK</button>
-            <label for="OK"><img src="https://images.icon-icons.com/2802/PNG/512/ok_sign_icon_178740.png" height="40" title="запустить программу"></img></label>
-            
-            <button id="step" style="display: none" onclick="one_step()">OK</button>
-            <label for="step"><img src="https://images.icon-icons.com/3375/PNG/512/circle_icon_211799.png" height="45" title="сделать один шаг"></img></label>
-            <br>
-            <br>
-            <textarea id="rules_list" placeholder="сначала загрузи правила! ;)" white-space="pre-wrap"></textarea>
-          <br>
-          <br>
-        </div>
-                  <div id="10" class="theory-card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3>Теория</h3>
-    </div>
-    <p><strong>Нормальный алгоритм Маркова</strong> - модель вычислений, работающая со строками. Есть список правил вида <code>левая → правая</code>. На каждом шаге ищется <strong>самое левое вхождение</strong> левой части и заменяется на правую. Правила просматриваются по порядку сверху вниз.</p>
-    <p>Если правило содержит <code>=></code> (заключительное), работа останавливается сразу после замены.<br>
-    Если ни одно правило не применимо - алгоритм завершается.</p>
-
-    <h4>Пример 1: удаление повторов букв</h4>
-    <div class="example-inline">
-        <code>aa -> a</code><br>
-        <code>bb -> b</code><br>
-        <code>cc -> c</code><br>
-        <strong>Вход:</strong> <code>abbbcaa</code><strong> Результат:</strong> <code> abca</code>
-      <br>
-      <br>
-      <button id='example1' onclick="show_ex1()" style="background: rgb(93, 108, 163)">загрузить пример</button>
-    </div>
-
-    <h4>Пример 2: удвоение каждого символа</h4>
-    <div class="example-inline">
-        <code>a -> aa</code><br>
-        <code>b -> bb</code><br>
-        <strong>Вход:</strong> <code>ab</code><code><strong> Результат:</strong> А резульатата не будет, т.к программа зациклится</code>
-      <br>
-      <br>
-      <button id='example2' onclick="show_ex2()" style="background: rgb(93, 108, 163)">загрузить пример</button>
-    </div>
-
-    <h4>Пример 3: удаление всех 'x'</h4>
-    <div class="example-inline">
-        <code>x -></code> (пустая правая часть)<br>
-        <strong>Вход:</strong> <code>xxaxxb</code> <strong>Результат:</strong><code> ab</code>
-      <br>
-      <br>
-      <button id='example3' onclick="show_ex3()" style="background: rgb(93, 108, 163)">загрузить пример</button>
-    </div>
-    <p style="font-size: 0.75rem; margin-top: 12px 0.7; font-size: 14px">Правила в эмулятор загружаются через файл .txt или вводятся в поле. Формат: <code>левая_часть -> правая_часть</code> или <code>левая_часть => правая_часть</code></p>
-</div>
-        <div id="toast" class="toast"></div>
-
-        <script>
-          
- function show_ex1() {
-    const text = "aa -> a\nbb -> b\ncc -> c";
-    document.getElementById("word").value = "abbbcaa";
-    document.getElementById("rules_list").value = text;
-    syncRules();
-}
- function show_ex2() {
-    const text = "a -> aa\nb -> bb"
-    document.getElementById("word").value = "ab";
-    document.getElementById("rules_list").value = text;
-    syncRules();
-}
- function show_ex3() {
-    const text = "x ->"
-    document.getElementById("word").value = "xxaxxb";
-    document.getElementById("rules_list").value = text;
-    syncRules();
-}         
-let i = 0;
-let curword;
-function one_step() {
-    if (i === 0) {
-      curword = document.getElementById("word").value
-      last_curword = document.getElementById("word").value
-    }
-    if (last_curword != document.getElementById("word").value) {
-      i = 1
-      curword = document.getElementById("word").value
-      last_curword = document.getElementById("word").value
-    } else {
-      i += 1
-    }
-    const rules=parseRules(document.getElementById("rules_list").value);
-    
-    const result = runMarkovMachine_step(curword, rules);
-    curword = result;
-    document.getElementById("result").textContent = "Шаг номер " + i + ": "+curword;
-}    
-    let count; 
-    count = 0
-    function runMarkovMachine_step(word, rules) {
-    let currentWord = word;
-    if (count >= rules.length) {
-      count = 0
-    }
-    for (const [left, arrow, right] of [rules[count]]) {
-        if (left === "" || currentWord.includes(left)) {
-            currentWord = replaceFirst(currentWord, left, right);
-            count += 1
-            return currentWord;
+        @media (max-width: 900px) {
+            .theory-card {
+                position: static;
+                width: 50%;
+                height: 350px;
+                opacity: 1;
+                max-height: calc(100% - 130px);
+                overflow-y: auto;
+                background: rgba(134, 114, 89); 
+                color: white;
+                border-radius: 28px;
+                padding: 18px 20px;
+                font-family: 'Inter', -apple-system, sans-serif;
+                z-index: auto;
+            }
+            body {
+                padding: 10px;
+            }
+            label[for="9"] {
+                display: inline-block;
+                margin-top: 20px;
+            }
         }
-        count += 1
-        return currentWord;
-    }
-}
-  
-          
-          
-          
-          
-          
-          
-          
-          
-            function showToast(message, duration = 2000) {
-                const toast = document.getElementById("toast");
-                toast.textContent = message;
-                toast.style.opacity = "1";
-                setTimeout(() => {
-                    toast.style.opacity = "0";
-                }, duration);
-            }
+        
+    </style>
+</head> 
+<body>
+    <h1 class="center">Добро пожаловать!</h1>
 
-            function reload() {
-              if (document.getElementById("rules_list").value == ""){
-                alert("чтобы что-то стереть, сначала надо что-то ввести!");
-              }
-              else if(confirm("вы уверенны что хотите очистить правила? Их нельзя будет вернуть!")){
-                  document.getElementById("rules_list").value = "";
-                  syncRules();
-                  showToast("Правила очищены");
-                }
-            }
-          
-            let currentRules = [];   
+    <p class="center">На моем сайте представлены разные алгоритмические машины.</p>
 
-            function parseRules(text) {
-                const lines = text.split(/\r?\n/);
-                const rules = [];
-                for (const line of lines) {
-                    const trimmed = line.trim();
-                    if (trimmed === "") continue;
-             
-                    let left, arrow, right;
-                    if (trimmed.includes("=>")) {
-                        const parts = trimmed.split(/\s*=>\s*/);
-                        left = parts[0].trim();
-                        right = parts[1].trim();
-                        arrow = "=>";
-                    } else if (trimmed.includes("->")) {
-                        const parts = trimmed.split(/\s*->\s*/);
-                        left = parts[0].trim();
-                        right = parts[1].trim();
-                        arrow = "->";
-                    } else {
-           
-                        const parts = trimmed.split(/\s+/);
-                        if (parts.length === 3) {
-                            left = parts[0];
-                            arrow = parts[1];
-                            right = parts[2];
-                        } else if (parts.length === 2) {
-                            left = "";
-                            arrow = parts[0];
-                            right = parts[1];
-                        } else {
-                            continue;
-                        }
-                    }
-                    rules.push([left, arrow, right]);
-                }
-                return rules;
-            }
-
-            function syncRules() {
-                const textareaValue = document.getElementById("rules_list").value;
-                currentRules = parseRules(textareaValue);
-            }
-
-            let visible = true;
-            function libraly() {
-                const libraly_content = document.getElementById("10");
-                if (!libraly_content) return;
-                visible = !visible;
-                libraly_content.style.display = visible ? "block" : "none";
-            }
-
-            function replaceFirst(str, search, replace) {
-                if (search === "") {
-                    return replace + str;
-                }
-                const index = str.indexOf(search);
-                if (index === -1) return str;
-                return str.slice(0, index) + replace + str.slice(index + search.length);
-            }
-
-            function runMarkovMachine(word, rules) {
-                const startTime = Date.now();
-                const TIMEOUT_MS = 7500;
-                let currentWord = word;
-
-                while (true) {
-                    if (Date.now() - startTime > TIMEOUT_MS) {
-                        throw new Error("превышено время выполнения");
-                    }
-                    let applied = false;
-                    for (const [left, arrow, right] of rules) {
-                        if (left === "" || currentWord.includes(left)) {
-                            currentWord = replaceFirst(currentWord, left, right);
-                            if (arrow === "=>") {
-                                return currentWord;
-                            }
-                            applied = true;
-                            break;
-                        }
-                    }
-                    if (!applied) {
-                        return currentWord;
-                    }
-                }
-            }
-
-            function displayResult(text, isError = false) {
-                const resultDiv = document.getElementById("result");
-                resultDiv.textContent = text;
-                if (isError) {
-                    resultDiv.classList.add("error");
-                } else {
-                    resultDiv.classList.remove("error");
-                }
-            }
-
-            function readFileAsText(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => resolve(e.target.result);
-                    reader.onerror = () => reject(new Error("Не удалось прочитать файл"));
-                    reader.readAsText(file, "UTF-8");
-                });
-            }
-
-            const fileInput = document.getElementById('file');
-            const rulesTextarea = document.getElementById('rules_list');
-
-            fileInput.addEventListener('change', async (event) => {
-                const file = event.target.files[0];
-                if (!file) {
-                    return;
-                }
-
-                try {
-                    const content = await readFileAsText(file);
-                    rulesTextarea.value = content;   
-                    syncRules();
-                    showToast(`Файл "${file.name}" загружен`, 3000);
-                    fileInput.value = '';
-                } catch (error) {
-                    console.error(error);
-                    rulesTextarea.value = 'Ошибка при чтении файла';
-                    syncRules();
-                    showToast("Ошибка при чтении файла", 3000);
-                }
-            });
-
-            rulesTextarea.addEventListener('input', () => {
-                syncRules();
-            });
-
-            document.getElementById("OK").addEventListener("click", () => {
-                const wordInput = document.getElementById("word");
-                const word = wordInput.value.trim();
-                if (word === "") {
-                    displayResult("Ошибка: введите слово", true);
-                    return;
-                }
-
-                if (currentRules.length === 0) {
-                    displayResult("Ошибка: нет правил. Загрузите файл или введите правила в текстовое поле вручную.", true);
-                    return;
-                }
-
-                displayResult("Обработка...");
-                try {
-                    const result = runMarkovMachine(word, currentRules);
-                    displayResult(result);
-                } catch (err) {
-                    displayResult(`Ошибка: ${err.message}`, true);
-                }
-            });
-
-            syncRules();
-        </script>
-        </div>
-<br>
-        <p style="color: rgba(255, 255, 255, 0.276)">сделано мишаней (v. 1.8.2)</p>
-    </body>
+    <a href="https://MerzlikinDev.github.io/Markov"><button>Эмулятор машины Маркова</button></a>
+    <br>
+    <br>
+    <br>
+    <a href="https://MerzlikinDev.github.io/Turing"><button>Эмулятор машины тьюринга (не доделан)</button></a>
+</body>
 </html>
